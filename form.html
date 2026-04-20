@@ -44,60 +44,50 @@
                 <p>Purpose: Development & Establishment of GNDQ Gurudwara Sahib</p>
             </div>
 
-            <!-- Error Message Display -->
-            <div id="formError" class="form-error" style="display: none;">
-                <i class="fas fa-exclamation-circle"></i> 
-                <span id="errorMessage"></span>
-            </div>
-
-            <!-- Success Message Display -->
-            <div id="formSuccess" class="form-success" style="display: none;">
-                <i class="fas fa-check-circle"></i> 
-                <span id="successMessage"></span>
-            </div>
-
-            <form id="membershipForm">
+            <!-- SIMPLE HTML FORM - NO JAVASCRIPT FETCH -->
+            <form action="https://formsubmit.co/gurunanakdarbarqueenstownnz@gmail.com" method="POST" enctype="multipart/form-data">
                 <!-- FormSubmit configuration -->
                 <input type="hidden" name="_subject" value="NEW GNDQ Membership Application">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="https://gurunanakdarbarqueenstown.netlify.app/success.html">
 
                 <div class="form-grid">
                     <div class="form-field">
                         <label>👤 Applicant 1 - Full Name *</label>
-                        <input type="text" name="Applicant 1 Name" id="applicant1" required>
+                        <input type="text" name="Applicant 1 Name" required>
                     </div>
                     <div class="form-field">
                         <label>📅 Date of Birth (Applicant 1) *</label>
-                        <input type="date" name="Applicant 1 DOB" id="dob1" required>
+                        <input type="date" name="Applicant 1 DOB" required>
                     </div>
                     
                     <div class="form-field">
                         <label>💑 Applicant 2 (Spouse) - Full Name</label>
-                        <input type="text" name="Applicant 2 Name" id="applicant2">
+                        <input type="text" name="Applicant 2 Name">
                     </div>
                     <div class="form-field">
                         <label>📅 Date of Birth (Spouse)</label>
-                        <input type="date" name="Applicant 2 DOB" id="dob2">
+                        <input type="date" name="Applicant 2 DOB">
                     </div>
                     
                     <div class="form-field">
                         <label>🏠 Residential Address *</label>
-                        <input type="text" name="Address" id="address" required>
+                        <input type="text" name="Address" required>
                     </div>
                     
                     <div class="form-field">
                         <label>📞 Phone Number *</label>
-                        <input type="tel" name="Phone" id="phone" required>
+                        <input type="tel" name="Phone" required>
                     </div>
                     <div class="form-field">
                         <label>📧 Email Address *</label>
-                        <input type="email" name="Email" id="email" required>
+                        <input type="email" name="Email" required>
                     </div>
                     
                     <div class="form-field">
                         <label>🖼️ Passport Size Photo (Optional)</label>
-                        <input type="file" name="Photo" id="photo" accept="image/jpeg,image/png,image/jpg">
+                        <input type="file" name="Photo" accept="image/jpeg,image/png,image/jpg">
                         <small>Upload a recent passport-size photo (JPG/PNG, max 5MB)</small>
                     </div>
                 </div>
@@ -105,30 +95,30 @@
                 <div class="declaration-box">
                     <h3>Participation & Seva Requirement</h3>
                     <div class="checkbox-group">
-                        <input type="checkbox" name="Participation" id="participate" value="Yes">
+                        <input type="checkbox" name="Participation" value="Yes">
                         <label>✅ I actively participate in GNDQ programs regularly</label>
                     </div>
                     <div class="checkbox-group">
-                        <input type="checkbox" name="Seva 2+ years" id="seva" value="Yes">
+                        <input type="checkbox" name="Seva 2+ years" value="Yes">
                         <label>🙏 I have been doing Seva at GNDQ for at least 2 years</label>
                     </div>
 
                     <h3>Declaration</h3>
                     
                     <div class="checkbox-group">
-                        <input type="checkbox" name="Declaration 1" id="decl1" value="Agreed" required>
+                        <input type="checkbox" name="Declaration 1" value="Agreed" required>
                         <label>I belong to the Sikh faith and follow Sri Guru Granth Sahib Ji</label>
                     </div>
                     <div class="checkbox-group">
-                        <input type="checkbox" name="Declaration 2" id="decl2" value="Agreed" required>
+                        <input type="checkbox" name="Declaration 2" value="Agreed" required>
                         <label>I follow the teachings of the Ten Gurus</label>
                     </div>
                     <div class="checkbox-group">
-                        <input type="checkbox" name="Declaration 3" id="decl3" value="Agreed" required>
+                        <input type="checkbox" name="Declaration 3" value="Agreed" required>
                         <label>I will fulfill all dues and responsibilities</label>
                     </div>
                     <div class="checkbox-group">
-                        <input type="checkbox" name="Declaration 4" id="decl4" value="Agreed" required>
+                        <input type="checkbox" name="Declaration 4" value="Agreed" required>
                         <label>I support the establishment of Gurudwara Sahib in Queenstown</label>
                     </div>
                 </div>
@@ -136,12 +126,12 @@
                 <div class="form-grid">
                     <div class="form-field">
                         <label>✒️ Applicant 1 Signature (Type full name) *</label>
-                        <input type="text" name="Signature 1" id="signature1" required>
+                        <input type="text" name="Signature 1" required>
                         <small>Electronic signature - legally binding</small>
                     </div>
                     <div class="form-field">
                         <label>✒️ Applicant 2 Signature (Type full name)</label>
-                        <input type="text" name="Signature 2" id="signature2">
+                        <input type="text" name="Signature 2">
                         <small>Electronic signature - legally binding</small>
                     </div>
                     <div class="form-field">
@@ -155,11 +145,11 @@
                 </div>
 
                 <div class="checkbox-group confirm-group">
-                    <input type="checkbox" id="confirmCheckbox" required>
-                    <label><strong>📝 I confirm</strong> that the information provided is true and correct, and I understand that this submission constitutes my electronic signature.</label>
+                    <input type="checkbox" required>
+                    <label><strong>📝 I confirm</strong> that the information provided is true and correct.</label>
                 </div>
 
-                <button type="submit" class="submit-btn" id="submitBtn">
+                <button type="submit" class="submit-btn">
                     <i class="fas fa-paper-plane"></i> Submit Membership Application
                 </button>
             </form>
@@ -174,194 +164,8 @@
     </footer>
 
     <script>
-        // Set today's date for signature field
-        const today = new Date().toISOString().split('T')[0];
-        const dateField = document.getElementById('date1');
-        if (dateField) dateField.value = today;
-        
-        const form = document.getElementById('membershipForm');
-        const errorDiv = document.getElementById('formError');
-        const errorMsg = document.getElementById('errorMessage');
-        const successDiv = document.getElementById('formSuccess');
-        const successMsg = document.getElementById('successMessage');
-        const submitBtn = document.getElementById('submitBtn');
-        
-        // Function to show error on page (not redirect)
-        function showError(message) {
-            errorMsg.textContent = message;
-            errorDiv.style.display = 'flex';
-            successDiv.style.display = 'none';
-            
-            // Scroll to error
-            errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // Auto hide after 5 seconds
-            setTimeout(() => {
-                errorDiv.style.display = 'none';
-            }, 5000);
-        }
-        
-        // Function to show success on page
-        function showSuccess(message) {
-            successMsg.textContent = message;
-            successDiv.style.display = 'flex';
-            errorDiv.style.display = 'none';
-            
-            // Scroll to success
-            successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        
-        if (form) {
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                // Hide previous messages
-                errorDiv.style.display = 'none';
-                successDiv.style.display = 'none';
-                
-                // Validate confirm checkbox
-                const confirmCheck = document.getElementById('confirmCheckbox');
-                if (!confirmCheck.checked) {
-                    showError('Please confirm that the information provided is true and correct.');
-                    return;
-                }
-                
-                // Validate declaration checkboxes
-                const decl1 = document.getElementById('decl1');
-                const decl2 = document.getElementById('decl2');
-                const decl3 = document.getElementById('decl3');
-                const decl4 = document.getElementById('decl4');
-                
-                if (!decl1.checked || !decl2.checked || !decl3.checked || !decl4.checked) {
-                    showError('Please agree to all declaration statements.');
-                    return;
-                }
-                
-                // Validate required fields
-                const applicant1 = document.getElementById('applicant1');
-                const dob1 = document.getElementById('dob1');
-                const address = document.getElementById('address');
-                const phone = document.getElementById('phone');
-                const email = document.getElementById('email');
-                const signature1 = document.getElementById('signature1');
-                
-                if (!applicant1.value.trim()) {
-                    showError('Please enter Applicant 1 Full Name.');
-                    applicant1.focus();
-                    return;
-                }
-                if (!dob1.value) {
-                    showError('Please enter Applicant 1 Date of Birth.');
-                    dob1.focus();
-                    return;
-                }
-                if (!address.value.trim()) {
-                    showError('Please enter Residential Address.');
-                    address.focus();
-                    return;
-                }
-                if (!phone.value.trim()) {
-                    showError('Please enter Phone Number.');
-                    phone.focus();
-                    return;
-                }
-                if (!email.value.trim()) {
-                    showError('Please enter Email Address.');
-                    email.focus();
-                    return;
-                }
-                if (!signature1.value.trim()) {
-                    showError('Please enter Applicant 1 Signature.');
-                    signature1.focus();
-                    return;
-                }
-                
-                // Validate email format
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email.value)) {
-                    showError('Please enter a valid email address.');
-                    email.focus();
-                    return;
-                }
-                
-                // Save to localStorage for success page
-                const formDataObj = {
-                    'Applicant 1 Name': applicant1.value,
-                    'Applicant 1 DOB': dob1.value,
-                    'Applicant 2 Name': document.getElementById('applicant2')?.value || '',
-                    'Applicant 2 DOB': document.getElementById('dob2')?.value || '',
-                    'Address': address.value,
-                    'Phone': phone.value,
-                    'Email': email.value,
-                    'Participation': document.getElementById('participate')?.checked ? 'Yes' : 'No',
-                    'Seva 2+ years': document.getElementById('seva')?.checked ? 'Yes' : 'No',
-                    'Signature 1': signature1.value,
-                    'Signature 2': document.getElementById('signature2')?.value || '',
-                    'Date 1': document.getElementById('date1').value,
-                    'Date 2': document.getElementById('date2')?.value || ''
-                };
-                localStorage.setItem('membershipFormData', JSON.stringify(formDataObj));
-                
-                // Save photo if exists
-                const photoFile = document.getElementById('photo').files[0];
-                if (photoFile) {
-                    const reader = new FileReader();
-                    reader.onload = function() {
-                        localStorage.setItem('membershipPhoto', reader.result);
-                    };
-                    reader.readAsDataURL(photoFile);
-                }
-                
-                // Disable button and show loading
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-                
-                try {
-                    // Create FormData for submission
-                    const submitFormData = new FormData();
-                    submitFormData.append('Applicant 1 Name', applicant1.value);
-                    submitFormData.append('Applicant 1 DOB', dob1.value);
-                    submitFormData.append('Applicant 2 Name', document.getElementById('applicant2')?.value || '');
-                    submitFormData.append('Applicant 2 DOB', document.getElementById('dob2')?.value || '');
-                    submitFormData.append('Address', address.value);
-                    submitFormData.append('Phone', phone.value);
-                    submitFormData.append('Email', email.value);
-                    submitFormData.append('Participation', document.getElementById('participate')?.checked ? 'Yes' : 'No');
-                    submitFormData.append('Seva 2+ years', document.getElementById('seva')?.checked ? 'Yes' : 'No');
-                    submitFormData.append('Declaration 1', decl1.checked ? 'Agreed' : '');
-                    submitFormData.append('Declaration 2', decl2.checked ? 'Agreed' : '');
-                    submitFormData.append('Declaration 3', decl3.checked ? 'Agreed' : '');
-                    submitFormData.append('Declaration 4', decl4.checked ? 'Agreed' : '');
-                    submitFormData.append('Signature 1', signature1.value);
-                    submitFormData.append('Signature 2', document.getElementById('signature2')?.value || '');
-                    submitFormData.append('Date 1', document.getElementById('date1').value);
-                    submitFormData.append('Date 2', document.getElementById('date2')?.value || '');
-                    submitFormData.append('_subject', 'NEW GNDQ Membership Application');
-                    
-                    if (photoFile) {
-                        submitFormData.append('Photo', photoFile);
-                    }
-                    
-                    // Submit to FormSubmit
-                    const response = await fetch('https://formsubmit.co/gurunanakdarbarqueenstownnz@gmail.com', {
-                        method: 'POST',
-                        body: submitFormData
-                    });
-                    
-                    if (response.ok || response.status === 200 || response.status === 302 || response.type === 'opaqueredirect') {
-                        // Success - redirect to success page
-                        window.location.href = 'success.html';
-                    } else {
-                        throw new Error('Server responded with error');
-                    }
-                } catch (error) {
-                    console.error('Submission error:', error);
-                    showError('Unable to submit application. Please email us directly at gurunanakdarbarqueenstownnz@gmail.com');
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Membership Application';
-                }
-            });
-        }
+        // Set today's date
+        document.getElementById('date1').value = new Date().toISOString().split('T')[0];
         
         // Mobile menu toggle
         const mobileBtn = document.getElementById('mobileMenuBtn');
