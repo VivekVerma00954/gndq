@@ -6,7 +6,6 @@
     <title>Membership Application | GNDQ</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -44,9 +43,8 @@
                 <p>Purpose: Development & Establishment of GNDQ Gurudwara Sahib</p>
             </div>
 
-            <!-- SIMPLE HTML FORM - NO JAVASCRIPT FETCH -->
+            <!-- PURE HTML FORM - NO JAVASCRIPT AT ALL -->
             <form action="https://formsubmit.co/gurunanakdarbarqueenstownnz@gmail.com" method="POST" enctype="multipart/form-data">
-                <!-- FormSubmit configuration -->
                 <input type="hidden" name="_subject" value="NEW GNDQ Membership Application">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
@@ -127,12 +125,10 @@
                     <div class="form-field">
                         <label>✒️ Applicant 1 Signature (Type full name) *</label>
                         <input type="text" name="Signature 1" required>
-                        <small>Electronic signature - legally binding</small>
                     </div>
                     <div class="form-field">
                         <label>✒️ Applicant 2 Signature (Type full name)</label>
                         <input type="text" name="Signature 2">
-                        <small>Electronic signature - legally binding</small>
                     </div>
                     <div class="form-field">
                         <label>📅 Date *</label>
@@ -164,10 +160,9 @@
     </footer>
 
     <script>
-        // Set today's date
+        // ONLY for date picker and mobile menu - NOT for form submission
         document.getElementById('date1').value = new Date().toISOString().split('T')[0];
         
-        // Mobile menu toggle
         const mobileBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
         if (mobileBtn && navLinks) {
