@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Submitted | GNDQ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <img src="gndq-logo.png" alt="GNDQ Logo" class="logo-img">
+                <div class="site-title">
+                    <h1>Guru Nanak Darbar Queenstown</h1>
+                    <p>Queenstown, New Zealand</p>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="form.html">Membership</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="section-title">
+            <h2>✅ Application Received Successfully</h2>
+            <div class="title-border"></div>
+        </div>
+
+        <div class="success-card">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <p>Your membership application has been submitted. Our team will review it and contact you within 3-5 business days.</p>
+        </div>
+
+        <div class="print-card" id="printArea">
+            <h3>Your Application Details</h3>
+            <div id="formContent"></div>
+            <div id="photoDisplay"></div>
+        </div>
+
+        <div class="steps-box">
+            <h3><i class="fas fa-file-pdf"></i> Save a Copy for Your Records</h3>
+            <ol>
+                <li>Review the information above to ensure it's correct</li>
+                <li>Press <kbd>Ctrl + P</kbd> (Windows) or <kbd>Cmd + P</kbd> (Mac)</li>
+                <li>Select <strong>"Save as PDF"</strong> as the destination</li>
+                <li>Click <strong>Save</strong> to keep a copy of your application</li>
+            </ol>
+            <p class="note"><i class="fas fa-envelope"></i> A confirmation has been sent to our team. No need to email us separately.</p>
+        </div>
+
+        <div class="action-buttons">
+            <a href="index.html" class="btn-secondary">← Back to Home</a>
+            <button onclick="window.print()" class="btn-primary"><i class="fas fa-print"></i> Print / Save PDF</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Guru Nanak Darbar Queenstown | Charitable Trust Regd. No. CC63766</p>
+            <p class="copyright">© 2025 - All rights reserved | Built with Seva</p>
+        </div>
+    </footer>
+
+    <script>
+        // Load saved form data
+        const formData = JSON.parse(localStorage.getItem('membershipFormData') || '{}');
+        const photoData = localStorage.getItem('membershipPhoto');
+        
+        const formContent = document.getElementById('formContent');
+        
+        if (Object.keys(formData).length > 0) {
+            formContent.innerHTML = `
+                <div class="details-grid">
+                    <div><strong>Applicant 1 Name:</strong><br>${escapeHtml(formData['Applicant 1 Name'] || 'Not provided')}</div>
+                    <div><strong>DOB:</strong><br>${escapeHtml(formData['Applicant 1 DOB'] || 'Not provided')}</div>
+                    <div><strong>Applicant 2 Name:</strong><br>${escapeHtml(formData['Applicant 2 Name'] || 'Not provided')}</div>
+                    <div><strong>DOB (Spouse):</strong><br>${escapeHtml(formData['Applicant 2 DOB'] || 'Not provided')}</div>
+                    <div><strong>Address:</strong><br>${escapeHtml(formData['Address'] || 'Not provided')}</div>
+                    <div><strong>Phone:</strong><br>${escapeHtml(formData['Phone'] || 'Not provided')}</div>
+                    <div><strong>Email:</strong><br>${escapeHtml(formData['Email'] || 'Not provided')}</div>
+                    <div><strong>Participation:</strong><br>${escapeHtml(formData['Participation'] || 'No')}</div>
+                    <div><strong>Seva (2+ years):</strong><br>${escapeHtml(formData['Seva 2+ years'] || 'No')}</div>
+                    <div><strong>Signature 1:</strong><br>${escapeHtml(formData['Signature 1'] || 'Not provided')}</div>
+                    <div><strong>Signature 2:</strong><br>${escapeHtml(formData['Signature 2'] || 'Not provided')}</div>
+                    <div><strong>Date:</strong><br>${escapeHtml(formData['Date 1'] || 'Not provided')}</div>
+                </div>
+            `;
+        } else {
+            formContent.innerHTML = '<p>No form data found. Please <a href="form.html">submit the form</a> again.</p>';
+        }
+        
+        if (photoData) {
+            document.getElementById('photoDisplay').innerHTML = `<h4>Passport Photo:</h4><img src="${photoData}" class="photo-preview" alt="Passport Photo">`;
+        }
+        
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+        
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
