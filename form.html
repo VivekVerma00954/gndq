@@ -43,12 +43,9 @@
                 <p>Purpose: Development & Establishment of GNDQ Gurudwara Sahib</p>
             </div>
 
-            <!-- PURE HTML FORM - NO JAVASCRIPT AT ALL -->
-            <form action="https://formsubmit.co/gurunanakdarbarqueenstownnz@gmail.com" method="POST" enctype="multipart/form-data" data-netlify="false" netlify="false">
-                <input type="hidden" name="_subject" value="NEW GNDQ Membership Application">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="https://gurunanakdarbarqueenstown.netlify.app/success.html">
+            <form action="/success.html" method="POST" enctype="multipart/form-data" data-netlify="true" name="membership-application" id="membershipForm">
+                <input type="hidden" name="form-name" value="membership-application">
+                <p style="display:none"><label>Leave blank: <input name="bot-field"></label></p>
 
                 <div class="form-grid">
                     <div class="form-field">
@@ -160,16 +157,25 @@
     </footer>
 
     <script>
-        // ONLY for date picker and mobile menu - NOT for form submission
         document.getElementById('date1').value = new Date().toISOString().split('T')[0];
-        
+
         const mobileBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
         if (mobileBtn && navLinks) {
-            mobileBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
+            mobileBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
         }
+
+        // Save form data to localStorage so success.html can display it
+        document.getElementById('membershipForm').addEventListener('submit', function() {
+            const data = {};
+            this.querySelectorAll('input:not([type=file]):not([type=checkbox]), textarea').forEach(el => {
+                if (el.name && el.name !== 'bot-field' && el.name !== 'form-name') data[el.name] = el.value;
+            });
+            this.querySelectorAll('input[type=checkbox]').forEach(el => {
+                if (el.name) data[el.name] = el.checked ? el.value : 'No';
+            });
+            localStorage.setItem('membershipFormData', JSON.stringify(data));
+        });
     </script>
 </body>
 </html>
