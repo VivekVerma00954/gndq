@@ -3,57 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Membership Application | GNDQ</title>
+  <title>Membership Application (with Attachments) | GNDQ</title>
   <meta name="description" content="Apply for GNDQ membership — Guru Nanak Darbar Queenstown.">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="gndq-logo.png">
-  <style>
-    /* Inline result messages */
-    .result-msg {
-      display: none;
-      border-radius: var(--radius-lg);
-      padding: 20px 24px;
-      margin-top: 20px;
-      font-size: .95rem;
-      line-height: 1.6;
-      text-align: center;
-    }
-    .result-msg.success {
-      background: var(--success-lt);
-      border: 1.5px solid #a5d6a7;
-      color: #1b5e20;
-    }
-    .result-msg.error {
-      background: var(--error-lt);
-      border: 1.5px solid #ef9a9a;
-      color: #7f0000;
-    }
-    .result-msg i { font-size: 1.6rem; display: block; margin-bottom: 10px; }
-    .result-msg strong { display: block; font-size: 1.05rem; margin-bottom: 6px; }
-
-    /* Document email notice */
-    .doc-notice {
-      background: #fff8e1;
-      border: 1.5px solid #f59e0b;
-      border-left: 5px solid #f59e0b;
-      border-radius: var(--radius);
-      padding: 18px 22px;
-      margin-bottom: 24px;
-      font-size: .88rem;
-      line-height: 1.7;
-      color: #7c5000;
-    }
-    .doc-notice strong { color: #5c3a00; }
-    .doc-notice .doc-email {
-      display: inline-block;
-      margin-top: 8px;
-      font-weight: 700;
-      color: var(--accent);
-      word-break: break-all;
-    }
-  </style>
 </head>
 <body>
 
@@ -98,34 +53,19 @@
       </div>
     </div>
 
-    <!-- Document email notice -->
-    <div class="doc-notice">
-      <i class="fas fa-info-circle"></i>
-      <strong>Photo &amp; ID Documents</strong>
-      After submitting this form, you will need to email the following to us:
-      <ul style="margin: 8px 0 0 18px; padding:0;">
-        <li>A recent <strong>passport-size photo</strong> (JPG or PNG)</li>
-        <li>A copy of your <strong>Passport or Driving Licence</strong></li>
-      </ul>
-      <span class="doc-email">
-        <i class="fas fa-envelope"></i>
-        gurunanakdarbarqueenstownnz@gmail.com
-      </span><br>
-      <small style="margin-top:6px;display:block;">Use your full name as the email subject. If we don't receive your documents, our team will send you a reminder.</small>
-    </div>
-
-    <!-- =====================================================
-         FORM — Web3Forms AJAX (free tier, no file uploads)
-         Inline success / failure — no page redirect
-         ===================================================== -->
-    <form id="membershipForm" novalidate>
-
-      <!-- Web3Forms hidden config -->
-      <input type="hidden" name="access_key" value="1839333a-4587-453b-a59a-5cc71ac53f74">
-      <input type="hidden" name="subject" value="NEW Membership Application — GNDQ">
-      <input type="hidden" name="from_name" value="GNDQ Membership Form">
+    <!-- NOTE: This version requires Web3Forms Pro for file uploads -->
+    <form
+      action="/success.html"
+      method="POST"
+      enctype="multipart/form-data"
+      id="membershipForm"
+      name="membership-application"
+      data-netlify="true"
+    >
+      <!-- Netlify Forms config -->
+      <input type="hidden" name="form-name" value="membership-application">
       <!-- Spam honeypot -->
-      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+      <p style="display:none"><label>Leave blank: <input name="bot-field"></label></p>
 
       <!-- ─── 1. Personal Details ─────────────────────────── -->
       <div class="form-section-block">
@@ -154,7 +94,36 @@
         </div>
       </div>
 
-      <!-- ─── 2. Emergency Contact ───────────────────────── -->
+      <!-- ─── 2. Documents ───────────────────────────────── -->
+      <div class="form-section-block">
+        <h3><i class="fas fa-paperclip"></i> Required Documents</h3>
+        <div class="form-grid">
+          <div class="form-field">
+            <label>Passport-Size Photo <span class="req">*</span></label>
+            <div class="file-upload-wrapper">
+              <input type="file" name="Passport Photo" id="photoFile" accept="image/jpeg,image/png,image/jpg" required>
+              <div class="file-upload-btn">
+                <i class="fas fa-camera"></i>
+                <span id="photoLabel">Choose photo (JPG/PNG, max 5 MB)</span>
+              </div>
+            </div>
+            <small>Recent passport-size photo, clear face visible</small>
+          </div>
+          <div class="form-field">
+            <label>Copy of Passport <em>or</em> Driving Licence <span class="req">*</span></label>
+            <div class="file-upload-wrapper">
+              <input type="file" name="ID Document" id="idFile" accept="image/jpeg,image/png,image/jpg,application/pdf" required>
+              <div class="file-upload-btn">
+                <i class="fas fa-id-card"></i>
+                <span id="idLabel">Choose file (JPG, PNG or PDF)</span>
+              </div>
+            </div>
+            <small>Must show full name, photo, and date of birth</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── 3. Emergency Contact ───────────────────────── -->
       <div class="form-section-block">
         <h3><i class="fas fa-phone-alt"></i> Emergency Contact</h3>
         <div class="form-grid cols-3">
@@ -173,13 +142,13 @@
         </div>
       </div>
 
-      <!-- ─── 3. Membership Details ──────────────────────── -->
+      <!-- ─── 4. Membership Details ──────────────────────── -->
       <div class="form-section-block">
         <h3><i class="fas fa-file-invoice-dollar"></i> Membership Details</h3>
         <div class="form-grid">
           <div class="form-field">
             <label>Payment Method <span class="req">*</span></label>
-            <div class="radio-group" role="radiogroup">
+            <div class="radio-group" role="radiogroup" aria-required="true">
               <label class="radio-pill">
                 <input type="radio" name="Payment Method" value="Bank Transfer" required>
                 <i class="fas fa-university"></i> Bank Transfer
@@ -196,7 +165,7 @@
           </div>
           <div class="form-field">
             <label>Tax Receipt Required? <span class="req">*</span></label>
-            <div class="radio-group" role="radiogroup">
+            <div class="radio-group" role="radiogroup" aria-required="true">
               <label class="radio-pill">
                 <input type="radio" name="Tax Receipt Required" value="Yes" required>
                 <i class="fas fa-check"></i> Yes
@@ -215,7 +184,7 @@
         </div>
       </div>
 
-      <!-- ─── 4. Participation & Seva ───────────────────── -->
+      <!-- ─── 5. Participation & Seva ───────────────────── -->
       <div class="form-section-block">
         <h3><i class="fas fa-hands-helping"></i> Participation &amp; Seva</h3>
         <div class="checkbox-item">
@@ -228,7 +197,7 @@
         </div>
       </div>
 
-      <!-- ─── 5. Declaration ─────────────────────────────── -->
+      <!-- ─── 6. Declaration ─────────────────────────────── -->
       <div class="form-section-block">
         <h3><i class="fas fa-scroll"></i> Declaration</h3>
         <div class="checkbox-item">
@@ -249,18 +218,18 @@
         </div>
       </div>
 
-      <!-- ─── 6. Privacy Consent ────────────────────────── -->
+      <!-- ─── 7. Privacy Consent ────────────────────────── -->
       <div class="privacy-block" style="margin-bottom:24px;">
         <div class="checkbox-item">
           <input type="checkbox" id="privacy" name="Privacy Consent" value="Agreed" required>
           <label for="privacy">
-            <strong>Privacy Consent:</strong> I consent to GNDQ collecting this data for membership and
-            communication purposes in accordance with the <strong>NZ Privacy Act</strong>. <span class="req">*</span>
+            <strong>Privacy Consent: </strong>I consent to GNDQ collecting this data for membership and communication purposes
+            in accordance with the <strong>NZ Privacy Act</strong>. <span class="req">*</span>
           </label>
         </div>
       </div>
 
-      <!-- ─── 7. Signature ──────────────────────────────── -->
+      <!-- ─── 8. Signature ──────────────────────────────── -->
       <div class="form-section-block">
         <h3><i class="fas fa-pen-nib"></i> Signature &amp; Date</h3>
         <div class="form-grid">
@@ -279,27 +248,6 @@
       <button type="submit" class="submit-btn" id="submitBtn">
         <i class="fas fa-paper-plane"></i> Submit Membership Application
       </button>
-
-      <!-- Inline result messages -->
-      <div class="result-msg success" id="successMsg">
-        <i class="fas fa-check-circle"></i>
-        <strong>Application Submitted Successfully!</strong>
-        Your membership application has been received by the GNDQ team. We will be in touch within 3&ndash;5 business days.<br><br>
-        <strong>Next step &mdash; please email your documents to:</strong><br>
-        <a href="mailto:gurunanakdarbarqueenstownnz@gmail.com" style="color:var(--success);font-weight:700;">
-          gurunanakdarbarqueenstownnz@gmail.com
-        </a><br>
-        <small style="margin-top:6px;display:block;">Include your full name in the subject line and attach your passport-size photo and a copy of your Passport or Driving Licence. If you don't send them, our team will email you a reminder.</small>
-      </div>
-
-      <div class="result-msg error" id="errorMsg">
-        <i class="fas fa-exclamation-circle"></i>
-        <strong>Submission Failed</strong>
-        Something went wrong sending your application. Please try again, or contact us directly at
-        <a href="mailto:gurunanakdarbarqueenstownnz@gmail.com" style="color:var(--error);font-weight:600;">
-          gurunanakdarbarqueenstownnz@gmail.com
-        </a>
-      </div>
 
       <!-- OFFICE USE ONLY — hidden on screen, visible on print -->
       <div class="office-use">
@@ -330,67 +278,29 @@
   </footer>
 
   <script>
-    // Auto-populate today's date
-    document.getElementById('sigDate').value = new Date().toISOString().split('T')[0];
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('sigDate').value = today;
 
-    // Mobile menu
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const navLinks  = document.getElementById('navLinks');
     if (mobileBtn) mobileBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
 
-    // Form submission via fetch (AJAX) — no page redirect
-    document.getElementById('membershipForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
+    function bindFileLabel(inputId, labelId) {
+      const input = document.getElementById(inputId);
+      const label = document.getElementById(labelId);
+      if (!input || !label) return;
+      input.addEventListener('change', () => {
+        label.textContent = input.files[0] ? input.files[0].name : label.dataset.default;
+      });
+      label.dataset.default = label.textContent;
+    }
+    bindFileLabel('photoFile', 'photoLabel');
+    bindFileLabel('idFile',    'idLabel');
 
-      const form      = this;
-      const btn       = document.getElementById('submitBtn');
-      const successEl = document.getElementById('successMsg');
-      const errorEl   = document.getElementById('errorMsg');
-
-      // Hide previous messages
-      successEl.style.display = 'none';
-      errorEl.style.display   = 'none';
-
-      // Basic HTML5 validation check
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      // Disable button & show spinner
+    document.getElementById('membershipForm').addEventListener('submit', function() {
+      const btn = document.getElementById('submitBtn');
       btn.disabled = true;
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting&hellip;';
-
-      try {
-        const formData = new FormData(form);
-        // Convert to JSON for Web3Forms
-        const object   = {};
-        formData.forEach((val, key) => { object[key] = val; });
-
-        const res  = await fetch('https://api.web3forms.com/submit', {
-          method:  'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body:    JSON.stringify(object)
-        });
-        const data = await res.json();
-
-        if (data.success) {
-          // Show success, hide form fields
-          successEl.style.display = 'block';
-          successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          btn.style.display = 'none';
-          // Disable all inputs so it can't be re-submitted
-          form.querySelectorAll('input, textarea, button').forEach(el => el.disabled = true);
-        } else {
-          throw new Error(data.message || 'Submission failed');
-        }
-      } catch (err) {
-        errorEl.style.display = 'block';
-        errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        // Re-enable button for retry
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Try Again';
-      }
     });
   </script>
 </body>
